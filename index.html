@@ -1300,250 +1300,286 @@ const ALL_QUESTIONS = [
 //  SIGNS DATA — 20 MN road signs with SVG
 // ════════════════════════════════════════════
 const SIGNS_DATA = [
+  // ── REGULATORY (red/white) ──
   {
     name: "Stop",
-    meaning: "Come to a complete stop and yield the right-of-way before proceeding.",
-    tip: "The octagon shape is used exclusively for STOP signs — it's the only 8-sided traffic sign.",
+    meaning: "Come to a complete stop. Remain stopped until pedestrians and vehicles with the right of way have cleared the intersection.",
+    tip: "The octagon is used exclusively for STOP signs — it's the only 8-sided traffic sign.",
     svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stop sign">
-  <polygon points="29,5 71,5 95,29 95,71 71,95 29,95 5,71 5,29" fill="#CC0000" stroke="white" stroke-width="4"/>
-  <text x="50" y="57" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="18" font-weight="900" fill="white" letter-spacing="1">STOP</text>
+  <polygon points="30,4 70,4 96,30 96,70 70,96 30,96 4,70 4,30" fill="#CC0000" stroke="white" stroke-width="5"/>
+  <text x="50" y="59" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="22" font-weight="900" fill="white" letter-spacing="1.5">STOP</text>
 </svg>`
   },
   {
     name: "Yield",
-    meaning: "Slow down and give the right-of-way to traffic in the intersection or roadway.",
-    tip: "The yield sign is the only downward-pointing triangle used on U.S. roads.",
-    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Yield sign">
-  <polygon points="50,92 5,12 95,12" fill="white" stroke="#CC0000" stroke-width="6"/>
-  <text x="50" y="58" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="14" font-weight="900" fill="#CC0000" letter-spacing="1">YIELD</text>
-</svg>`
-  },
-  {
-    name: "Speed Limit 55",
-    meaning: "Indicates the maximum legal driving speed (55 mph) under normal conditions.",
-    tip: "White rectangular signs are regulatory — they state laws you must obey.",
-    svg: `<svg viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Speed Limit 55 sign">
-  <rect x="4" y="4" width="72" height="92" rx="4" fill="white" stroke="black" stroke-width="4"/>
-  <text x="40" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="black">SPEED</text>
-  <text x="40" y="48" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="black">LIMIT</text>
-  <text x="40" y="86" text-anchor="middle" font-family="Arial,sans-serif" font-size="44" font-weight="bold" fill="black">55</text>
-</svg>`
-  },
-  {
-    name: "Railroad Crossing",
-    meaning: "Marks a railroad grade crossing; slow down, look, and listen for trains.",
-    tip: "The advance railroad crossing warning sign is a round yellow sign with an X and RR.",
-    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Railroad crossing sign">
-  <circle cx="50" cy="50" r="46" fill="#FFCC00" stroke="black" stroke-width="3"/>
-  <rect x="5" y="44" width="90" height="12" rx="5" fill="white" stroke="black" stroke-width="2" transform="rotate(-30 50 50)"/>
-  <rect x="5" y="44" width="90" height="12" rx="5" fill="white" stroke="black" stroke-width="2" transform="rotate(30 50 50)"/>
-  <text x="26" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" font-weight="bold" fill="black" transform="rotate(-30 26 30)">R</text>
-  <text x="74" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" font-weight="bold" fill="black" transform="rotate(30 74 30)">R</text>
-</svg>`
-  },
-  {
-    name: "School Zone",
-    meaning: "You are entering a school zone; reduce speed and watch for children crossing.",
-    tip: "The pentagon-shaped sign is used exclusively to mark school zones.",
-    svg: `<svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="School zone sign">
-  <polygon points="50,5 95,38 95,105 5,105 5,38" fill="#AACC00" stroke="black" stroke-width="3"/>
-  <circle cx="35" cy="50" r="6" fill="black"/>
-  <line x1="35" y1="56" x2="35" y2="74" stroke="black" stroke-width="3"/>
-  <line x1="35" y1="63" x2="26" y2="70" stroke="black" stroke-width="2.5"/>
-  <line x1="35" y1="63" x2="44" y2="70" stroke="black" stroke-width="2.5"/>
-  <line x1="35" y1="74" x2="29" y2="88" stroke="black" stroke-width="3"/>
-  <line x1="35" y1="74" x2="41" y2="88" stroke="black" stroke-width="3"/>
-  <circle cx="62" cy="48" r="7" fill="black"/>
-  <line x1="62" y1="55" x2="62" y2="75" stroke="black" stroke-width="3.5"/>
-  <line x1="62" y1="62" x2="52" y2="70" stroke="black" stroke-width="3"/>
-  <line x1="62" y1="62" x2="72" y2="70" stroke="black" stroke-width="3"/>
-  <line x1="62" y1="75" x2="55" y2="90" stroke="black" stroke-width="3"/>
-  <line x1="62" y1="75" x2="69" y2="90" stroke="black" stroke-width="3"/>
-</svg>`
-  },
-  {
-    name: "No Passing Zone",
-    meaning: "Passing other vehicles is prohibited from this point until the pennant ends.",
-    tip: "The pennant-shaped sign is posted on the LEFT side of the road at the start of a no-passing zone.",
-    svg: `<svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="No passing zone sign">
-  <polygon points="5,8 5,72 115,40" fill="#FFCC00" stroke="black" stroke-width="3"/>
-  <text x="40" y="34" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="black">NO</text>
-  <text x="40" y="47" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="black">PASSING</text>
-  <text x="40" y="60" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="black">ZONE</text>
-</svg>`
-  },
-  {
-    name: "Curve Ahead",
-    meaning: "The road ahead curves sharply; slow down and stay in your lane.",
-    tip: "Yellow diamond signs warn of hazards or changes in road conditions ahead.",
-    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Curve ahead sign">
-  <rect x="15" y="15" width="70" height="70" rx="4" fill="#FFCC00" stroke="black" stroke-width="3" transform="rotate(45 50 50)"/>
-  <path d="M 50,74 Q 50,52 66,34" fill="none" stroke="black" stroke-width="5" stroke-linecap="round"/>
-  <polygon points="66,28 58,41 74,38" fill="black"/>
-</svg>`
-  },
-  {
-    name: "Merge Ahead",
-    meaning: "Two lanes of traffic are merging into one; prepare to adjust speed and position.",
-    tip: "MnDOT officially endorses the 'zipper merge' — use the full lane until the merge point.",
-    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Merge ahead sign">
-  <rect x="15" y="15" width="70" height="70" rx="4" fill="#FFCC00" stroke="black" stroke-width="3" transform="rotate(45 50 50)"/>
-  <line x1="37" y1="73" x2="50" y2="50" stroke="black" stroke-width="4" stroke-linecap="round"/>
-  <line x1="63" y1="73" x2="50" y2="50" stroke="black" stroke-width="4" stroke-linecap="round"/>
-  <line x1="50" y1="50" x2="50" y2="30" stroke="black" stroke-width="4" stroke-linecap="round"/>
-  <polygon points="50,24 44,36 56,36" fill="black"/>
-</svg>`
-  },
-  {
-    name: "Pedestrian Crossing",
-    meaning: "Pedestrians may be crossing the road ahead; slow down and be prepared to stop.",
-    tip: "MN law requires stopping for pedestrians in crosswalks — in both lanes, not just the lane they're in.",
-    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pedestrian crossing sign">
-  <rect x="15" y="15" width="70" height="70" rx="4" fill="#FFCC00" stroke="black" stroke-width="3" transform="rotate(45 50 50)"/>
-  <circle cx="54" cy="32" r="6" fill="black"/>
-  <line x1="54" y1="38" x2="52" y2="58" stroke="black" stroke-width="4"/>
-  <line x1="52" y1="48" x2="41" y2="42" stroke="black" stroke-width="3"/>
-  <line x1="52" y1="48" x2="61" y2="44" stroke="black" stroke-width="3"/>
-  <line x1="52" y1="58" x2="44" y2="70" stroke="black" stroke-width="3.5"/>
-  <line x1="52" y1="58" x2="60" y2="70" stroke="black" stroke-width="3.5"/>
-</svg>`
-  },
-  {
-    name: "Deer Crossing",
-    meaning: "Deer frequently cross this area; watch for animals on or near the roadway.",
-    tip: "Especially common in MN — be alert at dawn and dusk when deer are most active.",
-    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Deer crossing sign">
-  <rect x="15" y="15" width="70" height="70" rx="4" fill="#FFCC00" stroke="black" stroke-width="3" transform="rotate(45 50 50)"/>
-  <path d="M 33,70 C 34,58 39,54 45,52 C 42,47 40,41 44,37 C 46,33 50,33 52,35 C 54,33 57,29 59,29 C 61,31 59,35 57,37 C 61,35 65,36 65,40 C 65,44 61,44 58,45 C 63,48 66,53 64,59 C 62,65 57,67 55,70 C 53,65 51,62 51,70 C 49,64 46,60 44,70 Z" fill="black"/>
-</svg>`
-  },
-  {
-    name: "One Way",
-    meaning: "Traffic flows in one direction only; do not travel against the arrow.",
-    tip: "One-way signs are black and white — always check for them when turning onto unfamiliar roads.",
-    svg: `<svg viewBox="0 0 140 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="One way sign">
-  <rect x="2" y="2" width="136" height="56" rx="4" fill="black"/>
-  <polygon points="96,30 79,18 79,26 28,26 28,34 79,34 79,42" fill="white"/>
-  <text x="64" y="52" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="11" font-weight="900" fill="white" letter-spacing="2">ONE WAY</text>
+    meaning: "Slow down or stop if necessary. Give the right of way to all other vehicles and pedestrians. Wait until it is safe to proceed.",
+    tip: "The downward-pointing red triangle is used only for yield signs on U.S. roads.",
+    svg: `<svg viewBox="0 0 100 95" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Yield sign">
+  <polygon points="50,91 4,10 96,10" fill="white" stroke="#CC0000" stroke-width="7"/>
+  <polygon points="50,80 13,17 87,17" fill="white" stroke="#CC0000" stroke-width="1"/>
+  <text x="50" y="57" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="15" font-weight="900" fill="#CC0000" letter-spacing="0.5">YIELD</text>
 </svg>`
   },
   {
     name: "Do Not Enter",
-    meaning: "You must not enter this road or lane; typically marks one-way road exits.",
-    tip: "If you see this sign, you are about to drive the wrong way — stop immediately.",
-    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Do not enter sign">
-  <circle cx="50" cy="50" r="46" fill="#CC0000"/>
-  <circle cx="50" cy="50" r="40" fill="#CC0000" stroke="white" stroke-width="5"/>
-  <rect x="14" y="38" width="72" height="24" rx="3" fill="white"/>
-  <text x="50" y="54" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="9.5" font-weight="900" fill="#CC0000" letter-spacing="0.5">DO NOT ENTER</text>
+    meaning: "Do not enter that lane or road if this sign is facing you.",
+    tip: "A red circle with a horizontal white bar — found at one-way road exits and highway ramps.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Do Not Enter sign">
+  <circle cx="50" cy="50" r="47" fill="#CC0000" stroke="white" stroke-width="5"/>
+  <rect x="12" y="38" width="76" height="24" rx="2" fill="white"/>
+  <text x="50" y="55" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="10" font-weight="900" fill="#CC0000" letter-spacing="0.3">DO NOT ENTER</text>
 </svg>`
   },
   {
     name: "Wrong Way",
-    meaning: "You are traveling against the flow of traffic; stop and turn around safely.",
-    tip: "A red and white WRONG WAY sign means you're driving against traffic — stop and reverse.",
-    svg: `<svg viewBox="0 0 140 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wrong way sign">
-  <rect x="2" y="2" width="136" height="56" rx="4" fill="#CC0000" stroke="white" stroke-width="3"/>
-  <text x="70" y="37" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="17" font-weight="900" fill="white" letter-spacing="2">WRONG WAY</text>
+    meaning: "You have entered a lane of oncoming traffic. You are traveling in the wrong direction.",
+    tip: "Red rectangle with white text — if you see this, stop and back out safely.",
+    svg: `<svg viewBox="0 0 130 55" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wrong Way sign">
+  <rect x="2" y="2" width="126" height="51" rx="3" fill="#CC0000" stroke="white" stroke-width="4"/>
+  <text x="65" y="35" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="18" font-weight="900" fill="white" letter-spacing="2">WRONG WAY</text>
+</svg>`
+  },
+  {
+    name: "Speed Limit",
+    meaning: "Speed limit signs indicate the maximum speed you may drive on a road under normal conditions.",
+    tip: "White rectangular regulatory signs — you must obey them. The MN urban default is 30 mph.",
+    svg: `<svg viewBox="0 0 80 105" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Speed Limit sign">
+  <rect x="3" y="3" width="74" height="99" rx="4" fill="white" stroke="black" stroke-width="4"/>
+  <text x="40" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="black" letter-spacing="0.5">SPEED</text>
+  <text x="40" y="47" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="black" letter-spacing="0.5">LIMIT</text>
+  <text x="40" y="91" text-anchor="middle" font-family="Arial,sans-serif" font-size="50" font-weight="bold" fill="black">55</text>
+</svg>`
+  },
+  {
+    name: "One Way",
+    meaning: "Traffic in the specified lane flows only in the direction of the arrow.",
+    tip: "Black background with a white arrow and text — always watch for these when turning.",
+    svg: `<svg viewBox="0 0 140 55" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="One Way sign">
+  <rect x="2" y="2" width="136" height="51" rx="3" fill="black"/>
+  <polygon points="110,27 88,14 88,23 18,23 18,31 88,31 88,40" fill="white"/>
+  <text x="63" y="48" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="11" font-weight="900" fill="white" letter-spacing="3">ONE WAY</text>
+</svg>`
+  },
+  {
+    name: "No Left Turn",
+    meaning: "Turning left is prohibited at this intersection.",
+    tip: "A red circle with a red slash over the symbol means that action is forbidden.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="No Left Turn sign">
+  <rect x="2" y="2" width="96" height="96" rx="6" fill="white" stroke="#CC0000" stroke-width="4"/>
+  <!-- Left-turn arrow -->
+  <path d="M 62,65 L 62,42 Q 62,32 52,32 L 38,32" fill="none" stroke="black" stroke-width="6" stroke-linecap="round"/>
+  <polygon points="38,32 48,24 48,40" fill="black"/>
+  <!-- Red circle-slash -->
+  <circle cx="50" cy="50" r="38" fill="none" stroke="#CC0000" stroke-width="6"/>
+  <line x1="22" y1="22" x2="78" y2="78" stroke="#CC0000" stroke-width="6" stroke-linecap="round"/>
+</svg>`
+  },
+  {
+    name: "No U-Turn",
+    meaning: "U-turns are prohibited at this location.",
+    tip: "Red circle-slash over the U-turn arrow — common near medians and busy intersections.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="No U-Turn sign">
+  <rect x="2" y="2" width="96" height="96" rx="6" fill="white" stroke="#CC0000" stroke-width="4"/>
+  <!-- U-turn arrow -->
+  <path d="M 35,70 L 35,42 Q 35,25 50,25 Q 65,25 65,42 L 65,55" fill="none" stroke="black" stroke-width="6" stroke-linecap="round"/>
+  <polygon points="65,62 57,48 73,48" fill="black"/>
+  <!-- Red circle-slash -->
+  <circle cx="50" cy="50" r="38" fill="none" stroke="#CC0000" stroke-width="6"/>
+  <line x1="22" y1="22" x2="78" y2="78" stroke="#CC0000" stroke-width="6" stroke-linecap="round"/>
+</svg>`
+  },
+  // ── WARNING (yellow diamond) ──
+  {
+    name: "Railroad Crossing Ahead",
+    meaning: "A railroad crossing is ahead. Slow down, look both ways, and be prepared to stop.",
+    tip: "Round yellow sign with an X — the only circular warning sign. Trains cannot stop quickly.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Railroad Crossing Ahead sign">
+  <circle cx="50" cy="50" r="46" fill="#FFCC00" stroke="black" stroke-width="3"/>
+  <!-- X symbol -->
+  <line x1="28" y1="28" x2="72" y2="72" stroke="black" stroke-width="9" stroke-linecap="round"/>
+  <line x1="72" y1="28" x2="28" y2="72" stroke="black" stroke-width="9" stroke-linecap="round"/>
+  <!-- RR text on each arm -->
+  <text x="21" y="26" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="11" font-weight="900" fill="black">R</text>
+  <text x="79" y="26" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="11" font-weight="900" fill="black">R</text>
+</svg>`
+  },
+  {
+    name: "School Zone",
+    meaning: "A school or approved school crosswalk is ahead. Watch for children and be prepared to stop.",
+    tip: "Fluorescent yellow-green pentagon (house shape) — used only for school zones.",
+    svg: `<svg viewBox="0 0 100 108" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="School Zone sign">
+  <!-- Pentagon: pointed top, flat bottom -->
+  <polygon points="50,4 96,36 96,104 4,104 4,36" fill="#CCEE00" stroke="black" stroke-width="3"/>
+  <!-- Two walking figures (adult + child) -->
+  <!-- Adult (left) -->
+  <circle cx="34" cy="47" r="6" fill="black"/>
+  <line x1="34" y1="53" x2="34" y2="71" stroke="black" stroke-width="3.5"/>
+  <line x1="34" y1="60" x2="24" y2="67" stroke="black" stroke-width="3"/>
+  <line x1="34" y1="60" x2="42" y2="65" stroke="black" stroke-width="3"/>
+  <line x1="34" y1="71" x2="28" y2="84" stroke="black" stroke-width="3.5"/>
+  <line x1="34" y1="71" x2="40" y2="84" stroke="black" stroke-width="3.5"/>
+  <!-- Child (right, smaller) -->
+  <circle cx="60" cy="50" r="5" fill="black"/>
+  <line x1="60" y1="55" x2="60" y2="70" stroke="black" stroke-width="3"/>
+  <line x1="60" y1="61" x2="52" y2="67" stroke="black" stroke-width="2.5"/>
+  <line x1="60" y1="61" x2="67" y2="66" stroke="black" stroke-width="2.5"/>
+  <line x1="60" y1="70" x2="54" y2="82" stroke="black" stroke-width="3"/>
+  <line x1="60" y1="70" x2="66" y2="82" stroke="black" stroke-width="3"/>
+  <!-- Connecting hand-hold line -->
+  <line x1="42" y1="65" x2="52" y2="67" stroke="black" stroke-width="2.5"/>
+</svg>`
+  },
+  {
+    name: "No Passing Zone",
+    meaning: "Marks the beginning of a no-passing zone on a two-way highway. Posted on the left side.",
+    tip: "Yellow pennant (triangle pointing right) posted on the LEFT side of the road.",
+    svg: `<svg viewBox="0 0 130 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="No Passing Zone sign">
+  <polygon points="4,6 4,78 126,42" fill="#FFCC00" stroke="black" stroke-width="3"/>
+  <text x="42" y="34" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="black">NO</text>
+  <text x="42" y="48" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="black">PASSING</text>
+  <text x="42" y="62" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="black">ZONE</text>
+</svg>`
+  },
+  {
+    name: "Pedestrian Crossing",
+    meaning: "Watch for pedestrians crossing the road. Slow down and be prepared to stop.",
+    tip: "Yellow-green diamond with a walking figure — yield to all pedestrians in crosswalks.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pedestrian Crossing sign">
+  <rect x="15" y="15" width="70" height="70" rx="3" fill="#CCEE00" stroke="black" stroke-width="3" transform="rotate(45 50 50)"/>
+  <!-- Walking figure, centered -->
+  <circle cx="50" cy="30" r="6" fill="black"/>
+  <line x1="50" y1="36" x2="50" y2="56" stroke="black" stroke-width="5" stroke-linecap="round"/>
+  <line x1="50" y1="44" x2="39" y2="38" stroke="black" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="50" y1="44" x2="61" y2="40" stroke="black" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="50" y1="56" x2="42" y2="70" stroke="black" stroke-width="4" stroke-linecap="round"/>
+  <line x1="50" y1="56" x2="58" y2="70" stroke="black" stroke-width="4" stroke-linecap="round"/>
+</svg>`
+  },
+  {
+    name: "Slippery Road",
+    meaning: "The road surface is slippery when it is wet. Often located near bridges and overpasses.",
+    tip: "Yellow diamond with a skidding car — slow down in rain, snow, or ice.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Slippery Road sign">
+  <rect x="15" y="15" width="70" height="70" rx="3" fill="#FFCC00" stroke="black" stroke-width="3" transform="rotate(45 50 50)"/>
+  <!-- Car body (side view, simplified) -->
+  <rect x="26" y="50" width="48" height="16" rx="3" fill="black"/>
+  <!-- Roof -->
+  <path d="M 33,50 L 37,38 L 63,38 L 67,50 Z" fill="black"/>
+  <!-- Wheels -->
+  <circle cx="35" cy="67" r="6" fill="black" stroke="#FFCC00" stroke-width="2"/>
+  <circle cx="65" cy="67" r="6" fill="black" stroke="#FFCC00" stroke-width="2"/>
+  <!-- Skid squiggle below -->
+  <path d="M 28,77 Q 38,72 50,77 Q 62,82 72,77" fill="none" stroke="black" stroke-width="3" stroke-linecap="round"/>
 </svg>`
   },
   {
     name: "Divided Highway Begins",
-    meaning: "The roadway ahead is divided by a median; keep to the right of the divider.",
-    tip: "When a divided highway begins, oncoming traffic is now separated from you by a median.",
-    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Divided highway begins sign">
-  <rect x="15" y="15" width="70" height="70" rx="4" fill="#FFCC00" stroke="black" stroke-width="3" transform="rotate(45 50 50)"/>
-  <line x1="50" y1="76" x2="50" y2="56" stroke="black" stroke-width="4"/>
-  <line x1="50" y1="56" x2="34" y2="30" stroke="black" stroke-width="4" stroke-linecap="round"/>
-  <line x1="50" y1="56" x2="66" y2="30" stroke="black" stroke-width="4" stroke-linecap="round"/>
-  <polygon points="34,24 27,36 40,37" fill="black" transform="rotate(-12 34 30)"/>
-  <polygon points="66,24 60,36 73,37" fill="black" transform="rotate(12 66 30)"/>
-  <circle cx="50" cy="54" r="4" fill="black"/>
+    meaning: "The road is dividing ahead. Stay to the right of the median.",
+    tip: "Yellow diamond — one road splits into two separated by a median. Keep right.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Divided Highway Begins sign">
+  <rect x="15" y="15" width="70" height="70" rx="3" fill="#FFCC00" stroke="black" stroke-width="3" transform="rotate(45 50 50)"/>
+  <!-- Single road from bottom -->
+  <line x1="50" y1="78" x2="50" y2="56" stroke="black" stroke-width="5" stroke-linecap="round"/>
+  <!-- Splits into two arrows going up -->
+  <line x1="50" y1="56" x2="33" y2="30" stroke="black" stroke-width="5" stroke-linecap="round"/>
+  <line x1="50" y1="56" x2="67" y2="30" stroke="black" stroke-width="5" stroke-linecap="round"/>
+  <polygon points="33,23 25,35 41,35" fill="black" transform="rotate(-20 33 30)"/>
+  <polygon points="67,23 59,35 75,35" fill="black" transform="rotate(20 67 30)"/>
+  <!-- Median divider dot at split -->
+  <rect x="46" y="52" width="8" height="8" fill="black"/>
 </svg>`
   },
   {
     name: "Divided Highway Ends",
-    meaning: "The divided highway ahead ends; the road becomes undivided two-way traffic.",
-    tip: "After this sign, watch for oncoming traffic — the median barrier is gone.",
-    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Divided highway ends sign">
-  <rect x="15" y="15" width="70" height="70" rx="4" fill="#FFCC00" stroke="black" stroke-width="3" transform="rotate(45 50 50)"/>
-  <line x1="34" y1="28" x2="50" y2="52" stroke="black" stroke-width="4" stroke-linecap="round"/>
-  <line x1="66" y1="28" x2="50" y2="52" stroke="black" stroke-width="4" stroke-linecap="round"/>
-  <line x1="50" y1="52" x2="50" y2="74" stroke="black" stroke-width="4"/>
-  <polygon points="50,80 44,66 56,66" fill="black"/>
-  <circle cx="50" cy="47" r="4" fill="black"/>
+    meaning: "The divided road ends ahead. Two-way traffic will no longer be divided by a center island.",
+    tip: "Yellow diamond — two separate roadways merge back into one undivided road ahead.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Divided Highway Ends sign">
+  <rect x="15" y="15" width="70" height="70" rx="3" fill="#FFCC00" stroke="black" stroke-width="3" transform="rotate(45 50 50)"/>
+  <!-- Two roads from top converging -->
+  <line x1="33" y1="26" x2="50" y2="52" stroke="black" stroke-width="5" stroke-linecap="round"/>
+  <line x1="67" y1="26" x2="50" y2="52" stroke="black" stroke-width="5" stroke-linecap="round"/>
+  <!-- Single road going down with arrow -->
+  <line x1="50" y1="52" x2="50" y2="74" stroke="black" stroke-width="5" stroke-linecap="round"/>
+  <polygon points="50,81 42,67 58,67" fill="black"/>
+  <!-- Median divider dot -->
+  <rect x="46" y="48" width="8" height="8" fill="black"/>
 </svg>`
   },
   {
-    name: "Work Zone",
-    meaning: "Road construction or maintenance ahead; slow down, fines are doubled in work zones.",
-    tip: "Orange is the standard color for all construction and work zone signs.",
-    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Work zone sign">
-  <rect x="15" y="15" width="70" height="70" rx="4" fill="#FF6600" stroke="black" stroke-width="3" transform="rotate(45 50 50)"/>
-  <path d="M 44,30 Q 50,23 56,30 Z" fill="black"/>
-  <circle cx="50" cy="35" r="6" fill="black"/>
-  <line x1="50" y1="41" x2="50" y2="62" stroke="black" stroke-width="4"/>
-  <line x1="50" y1="49" x2="39" y2="57" stroke="black" stroke-width="3"/>
-  <line x1="50" y1="49" x2="63" y2="54" stroke="black" stroke-width="3"/>
-  <line x1="50" y1="62" x2="43" y2="76" stroke="black" stroke-width="3.5"/>
-  <line x1="50" y1="62" x2="57" y2="76" stroke="black" stroke-width="3.5"/>
-  <line x1="61" y1="50" x2="68" y2="72" stroke="black" stroke-width="2.5"/>
-  <ellipse cx="69" cy="74" rx="5" ry="3" fill="black" transform="rotate(-30 69 74)"/>
+    name: "T-Intersection Ahead",
+    meaning: "The road you are traveling on will end soon. Prepare to turn right or left. Yield to cross traffic.",
+    tip: "Yellow diamond with a T symbol — your road dead-ends into a through road ahead.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="T-Intersection Ahead sign">
+  <rect x="15" y="15" width="70" height="70" rx="3" fill="#FFCC00" stroke="black" stroke-width="3" transform="rotate(45 50 50)"/>
+  <!-- T symbol: horizontal bar -->
+  <line x1="28" y1="42" x2="72" y2="42" stroke="black" stroke-width="6" stroke-linecap="round"/>
+  <!-- Vertical stem going down -->
+  <line x1="50" y1="42" x2="50" y2="72" stroke="black" stroke-width="6" stroke-linecap="round"/>
+  <!-- Arrows on ends of horizontal -->
+  <polygon points="72,42 60,36 60,48" fill="black"/>
+  <polygon points="28,42 40,36 40,48" fill="black"/>
 </svg>`
   },
   {
-    name: "Bike Lane",
-    meaning: "This lane is reserved for bicycle traffic only; motor vehicles must not use it.",
-    tip: "Always check for cyclists in bike lanes before turning right — right-hook collisions are dangerous.",
-    svg: `<svg viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bike lane sign">
-  <rect x="3" y="3" width="74" height="94" rx="4" fill="white" stroke="black" stroke-width="3"/>
-  <circle cx="25" cy="68" r="14" fill="none" stroke="black" stroke-width="3"/>
-  <circle cx="55" cy="68" r="14" fill="none" stroke="black" stroke-width="3"/>
-  <line x1="25" y1="68" x2="40" y2="48" stroke="black" stroke-width="2.5"/>
-  <line x1="40" y1="48" x2="55" y2="68" stroke="black" stroke-width="2.5"/>
-  <line x1="40" y1="48" x2="40" y2="58" stroke="black" stroke-width="2.5"/>
-  <line x1="34" y1="68" x2="40" y2="58" stroke="black" stroke-width="2.5"/>
-  <line x1="40" y1="48" x2="48" y2="46" stroke="black" stroke-width="2.5"/>
-  <line x1="48" y1="46" x2="48" y2="51" stroke="black" stroke-width="2"/>
-  <line x1="34" y1="48" x2="40" y2="48" stroke="black" stroke-width="3"/>
-  <circle cx="50" cy="39" r="5" fill="black"/>
-  <text x="40" y="92" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="black" letter-spacing="0.5">BIKE LANE</text>
+    name: "Winding Road Ahead",
+    meaning: "The road ahead winds back and forth. Slow to a safe or indicated speed.",
+    tip: "Yellow diamond with an S-curve arrow — common on rural and hilly MN roads.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Winding Road Ahead sign">
+  <rect x="15" y="15" width="70" height="70" rx="3" fill="#FFCC00" stroke="black" stroke-width="3" transform="rotate(45 50 50)"/>
+  <!-- S-curve arrow -->
+  <path d="M 50,74 Q 38,65 38,54 Q 38,44 50,40 Q 62,36 62,26" fill="none" stroke="black" stroke-width="5" stroke-linecap="round"/>
+  <polygon points="62,19 55,30 69,30" fill="black"/>
 </svg>`
   },
+  {
+    name: "Traffic Signal Ahead",
+    meaning: "There is a traffic light at the next intersection. Be prepared to stop.",
+    tip: "Yellow diamond with a stoplight symbol — prepare to stop if the light is red.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Traffic Signal Ahead sign">
+  <rect x="15" y="15" width="70" height="70" rx="3" fill="#FFCC00" stroke="black" stroke-width="3" transform="rotate(45 50 50)"/>
+  <!-- Traffic light housing -->
+  <rect x="39" y="26" width="22" height="50" rx="4" fill="black"/>
+  <!-- Three lights -->
+  <circle cx="50" cy="36" r="6" fill="#CC0000"/>
+  <circle cx="50" cy="51" r="6" fill="#FFAA00"/>
+  <circle cx="50" cy="66" r="6" fill="#22CC44"/>
+</svg>`
+  },
+  // ── CONSTRUCTION (orange diamond) ──
+  {
+    name: "Construction Zone",
+    meaning: "Road construction or maintenance is ahead. Slow down — fines are doubled when workers are present.",
+    tip: "Orange diamond with a worker figure — MN fines are $300 for speeding in a work zone.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Construction Zone sign">
+  <rect x="15" y="15" width="70" height="70" rx="3" fill="#FF7300" stroke="black" stroke-width="3" transform="rotate(45 50 50)"/>
+  <!-- Hard hat -->
+  <path d="M 38,34 Q 50,24 62,34 L 62,38 L 38,38 Z" fill="black"/>
+  <rect x="36" y="36" width="28" height="4" rx="1" fill="black"/>
+  <!-- Head -->
+  <circle cx="50" cy="46" r="7" fill="black"/>
+  <!-- Body -->
+  <line x1="50" y1="53" x2="50" y2="70" stroke="black" stroke-width="5" stroke-linecap="round"/>
+  <!-- Arms with shovel -->
+  <line x1="50" y1="58" x2="38" y2="65" stroke="black" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="50" y1="58" x2="62" y2="62" stroke="black" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- Legs -->
+  <line x1="50" y1="70" x2="43" y2="82" stroke="black" stroke-width="4" stroke-linecap="round"/>
+  <line x1="50" y1="70" x2="57" y2="82" stroke="black" stroke-width="4" stroke-linecap="round"/>
+</svg>`
+  },
+  // ── SERVICE (blue) ──
   {
     name: "Hospital",
     meaning: "A hospital with emergency services is located in the direction of the arrow.",
-    tip: "Blue highway signs guide motorists to services like hospitals, gas stations, and rest areas.",
+    tip: "Blue service signs direct motorists to hospitals, gas, food, lodging and rest areas.",
     svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hospital sign">
-  <rect x="3" y="3" width="94" height="94" rx="6" fill="#0055AA"/>
-  <rect x="24" y="18" width="12" height="52" rx="2" fill="white"/>
-  <rect x="64" y="18" width="12" height="52" rx="2" fill="white"/>
-  <rect x="24" y="38" width="52" height="12" rx="2" fill="white"/>
-  <polygon points="82,84 66,76 66,80 28,80 28,88 66,88 66,92" fill="white"/>
-</svg>`
-  },
-  {
-    name: "Slippery When Wet",
-    meaning: "The road surface becomes slippery when wet; reduce speed in rain or icy conditions.",
-    tip: "On icy roads, stopping distance can be up to 10 times greater than on dry pavement.",
-    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Slippery when wet sign">
-  <rect x="15" y="15" width="70" height="70" rx="4" fill="#FFCC00" stroke="black" stroke-width="3" transform="rotate(45 50 50)"/>
-  <rect x="28" y="46" width="44" height="18" rx="4" fill="black"/>
-  <rect x="34" y="38" width="28" height="12" rx="4" fill="black"/>
-  <circle cx="35" cy="66" r="5" fill="black" stroke="#FFCC00" stroke-width="2"/>
-  <circle cx="65" cy="66" r="5" fill="black" stroke="#FFCC00" stroke-width="2"/>
-  <path d="M 28,78 Q 38,73 50,79 Q 62,85 72,79" fill="none" stroke="black" stroke-width="2.5" stroke-dasharray="4,2"/>
-</svg>`
-  },
-  {
-    name: "Roundabout Ahead",
-    meaning: "A roundabout intersection is ahead; yield to traffic already circulating in the circle.",
-    tip: "Traffic already in a roundabout has the right-of-way; entering vehicles must yield.",
-    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Roundabout ahead sign">
-  <rect x="15" y="15" width="70" height="70" rx="4" fill="#FFCC00" stroke="black" stroke-width="3" transform="rotate(45 50 50)"/>
-  <path d="M 50,27 A 23,23 0 1 0 73,50" fill="none" stroke="black" stroke-width="5" stroke-linecap="round"/>
-  <polygon points="73,50 62,44 68,58" fill="black"/>
-  <circle cx="50" cy="50" r="7" fill="black"/>
+  <rect x="2" y="2" width="96" height="96" rx="5" fill="#003F87"/>
+  <!-- Bold white H -->
+  <rect x="22" y="18" width="14" height="56" rx="2" fill="white"/>
+  <rect x="64" y="18" width="14" height="56" rx="2" fill="white"/>
+  <rect x="22" y="39" width="56" height="14" rx="2" fill="white"/>
+  <!-- White right-arrow at bottom -->
+  <polygon points="84,86 68,78 68,82 24,82 24,90 68,90 68,94" fill="white"/>
 </svg>`
   }
 ];
