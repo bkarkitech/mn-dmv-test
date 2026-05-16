@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minnesota DMV Practice Test 🌊</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mn-blue: #003F87;
+    --mn-blue-light: #1A5FAD;
+    --mn-blue-dark: #002A5C;
+    --mn-gold: #FFD700;
+    --mn-gold-dark: #E6C200;
+    --correct: #22C55E;
+    --correct-bg: #DCFCE7;
+    --wrong: #EF4444;
+    --wrong-bg: #FEE2E2;
+    --neutral-bg: #F0F4FA;
+    --card-bg: #FFFFFF;
+    --text-main: #1A2744;
+    --text-muted: #5A6A8A;
+    --border: #D1DDEF;
+    --shadow: 0 4px 24px rgba(0,63,135,0.10);
+    --shadow-lg: 0 8px 40px rgba(0,63,135,0.16);
+    --radius: 18px;
+    --radius-sm: 10px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito Sans', sans-serif;
+    background: linear-gradient(160deg, #EEF4FF 0%, #F7F9FF 50%, #FFF9E6 100%);
+    min-height: 100vh;
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, var(--mn-blue-dark) 0%, var(--mn-blue) 60%, var(--mn-blue-light) 100%);
+    color: white;
+    padding: 28px 20px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 0%, rgba(255,215,0,0.18) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .header-wave {
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 28px;
+    background: linear-gradient(160deg, #EEF4FF 0%, #F7F9FF 50%, #FFF9E6 100%);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .header-emoji { font-size: 2.6rem; margin-bottom: 6px; display: block; animation: bobble 3s ease-in-out infinite; }
+  @keyframes bobble { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+  .header-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+  .header-title span { color: var(--mn-gold); }
+  .header-sub {
+    font-size: 0.92rem;
+    opacity: 0.8;
+    margin-top: 4px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* ── STICKY TOP BAR ── */
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    box-shadow: 0 2px 12px rgba(0,63,135,0.08);
+  }
+  .score-pill {
+    background: var(--mn-blue);
+    color: white;
+    border-radius: 50px;
+    padding: 8px 18px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+  }
+  .score-pill .score-num { color: var(--mn-gold); font-size: 1.15rem; }
+  .progress-pill {
+    background: var(--neutral-bg);
+    color: var(--text-muted);
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+  .mode-toggle {
+    display: flex;
+    background: var(--neutral-bg);
+    border-radius: 50px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .mode-btn {
+    background: transparent;
+    border: none;
+    border-radius: 50px;
+    padding: 7px 14px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.2s;
+  }
+  .mode-btn.active {
+    background: var(--mn-blue);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0,63,135,0.25);
+  }
+  .shuffle-btn {
+    background: linear-gradient(135deg, var(--mn-gold) 0%, var(--mn-gold-dark) 100%);
+    color: var(--mn-blue-dark);
+    border: none;
+    border-radius: 50px;
+    padding: 9px 18px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 3px 10px rgba(230,194,0,0.4);
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .shuffle-btn:hover { transform: translateY(-1px); box-shadow: 0 5px 16px rgba(230,194,0,0.5); }
+  .shuffle-btn:active { transform: translateY(0); }
+
+  /* ── MAIN LAYOUT ── */
+  main { max-width: 780px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  /* ── QUIZ MODE ── */
+  .quiz-list { display: flex; flex-direction: column; gap: 20px; }
+  .q-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 22px 22px 18px;
+    box-shadow: var(--shadow);
+    border: 2px solid transparent;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    animation: slideUp 0.4s ease both;
+  }
+  @keyframes slideUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+  .q-card.answered-correct { border-color: var(--correct); background: #F0FFF4; }
+  .q-card.answered-wrong   { border-color: var(--wrong);   background: #FFF5F5; }
+  .q-num {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.78rem;
+    color: var(--mn-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .q-num-badge {
+    background: var(--mn-blue);
+    color: white;
+    border-radius: 50%;
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+  .q-topic-tag {
+    background: #EEF4FF;
+    color: var(--mn-blue);
+    border-radius: 50px;
+    padding: 2px 10px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .q-text {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1rem, 3vw, 1.12rem);
+    line-height: 1.45;
+    color: var(--text-main);
+    margin-bottom: 16px;
+  }
+  .options { display: flex; flex-direction: column; gap: 9px; }
+  .option-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--neutral-bg);
+    border: 2px solid transparent;
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    cursor: pointer;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 0.97rem;
+    font-weight: 600;
+    color: var(--text-main);
+    text-align: left;
+    transition: all 0.18s;
+    width: 100%;
+    line-height: 1.4;
+  }
+  .option-btn:hover:not(:disabled) {
+    background: #E8EFFE;
+    border-color: var(--mn-blue-light);
+    transform: translateX(3px);
+  }
+  .option-btn:disabled { cursor: default; }
+  .option-btn .letter {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    min-width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: var(--mn-blue);
+    flex-shrink: 0;
+    transition: all 0.18s;
+  }
+  .option-btn.correct-choice {
+    background: var(--correct-bg);
+    border-color: var(--correct);
+  }
+  .option-btn.correct-choice .letter {
+    background: var(--correct);
+    border-color: var(--correct);
+    color: white;
+  }
+  .option-btn.wrong-choice {
+    background: var(--wrong-bg);
+    border-color: var(--wrong);
+  }
+  .option-btn.wrong-choice .letter {
+    background: var(--wrong);
+    border-color: var(--wrong);
+    color: white;
+  }
+  .option-btn.reveal-correct {
+    background: var(--correct-bg);
+    border-color: var(--correct);
+    animation: pulse 0.5s ease;
+  }
+  @keyframes pulse { 0%{transform:scale(1)} 50%{transform:scale(1.01)} 100%{transform:scale(1)} }
+  .option-btn.reveal-correct .letter {
+    background: var(--correct);
+    border-color: var(--correct);
+    color: white;
+  }
+  .feedback-tip {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: #F0F7FF;
+    border-left: 3px solid var(--mn-blue-light);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 0.87rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    line-height: 1.45;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(-4px)} to{opacity:1;transform:translateY(0)} }
+  .feedback-icon { display: inline-block; margin-right: 5px; }
+
+  /* ── RESULTS SCREEN ── */
+  .results-screen {
+    text-align: center;
+    background: white;
+    border-radius: var(--radius);
+    padding: 40px 28px;
+    box-shadow: var(--shadow-lg);
+    animation: fadeIn 0.5s ease;
+  }
+  .results-emoji { font-size: 4rem; margin-bottom: 12px; display: block; }
+  .results-title {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1.9rem;
+    color: var(--mn-blue);
+    margin-bottom: 8px;
+  }
+  .results-score {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 3.5rem;
+    color: var(--mn-gold-dark);
+    line-height: 1;
+    margin: 12px 0;
+  }
+  .results-out-of { font-size: 1.1rem; color: var(--text-muted); font-weight: 700; }
+  .results-msg { font-size: 1.05rem; color: var(--text-muted); font-weight: 600; margin: 16px 0 28px; line-height: 1.5; }
+  .pass-fail-badge {
+    display: inline-block;
+    padding: 8px 24px;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .pass-badge { background: var(--correct-bg); color: #166534; border: 2px solid var(--correct); }
+  .fail-badge { background: var(--wrong-bg);   color: #991B1B; border: 2px solid var(--wrong); }
+  .results-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--mn-blue) 0%, var(--mn-blue-light) 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 13px 28px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0,63,135,0.3);
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,63,135,0.4); }
+  .btn-secondary {
+    background: var(--neutral-bg);
+    color: var(--mn-blue);
+    border: 2px solid var(--border);
+    border-radius: 50px;
+    padding: 13px 28px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { background: #E8EFFE; border-color: var(--mn-blue-light); }
+
+  /* ── FLASHCARD MODE ── */
+  .flashcard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    animation: fadeIn 0.4s ease;
+  }
+  .flashcard-nav {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    justify-content: center;
+  }
+  .nav-btn {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+    box-shadow: var(--shadow);
+    color: var(--mn-blue);
+    font-weight: 900;
+  }
+  .nav-btn:hover:not(:disabled) { background: var(--mn-blue); color: white; border-color: var(--mn-blue); transform: scale(1.05); }
+  .nav-btn:disabled { opacity: 0.3; cursor: default; }
+  .fc-progress-text {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text-main);
+  }
+  .flashcard {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    padding: 30px 26px 26px;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+    min-height: 200px;
+  }
+  .flashcard.fc-correct { border-color: var(--correct); background: #F0FFF4; }
+  .flashcard.fc-wrong   { border-color: var(--wrong);   background: #FFF5F5; }
+  .fc-q-num {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.78rem;
+    color: var(--mn-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .fc-question {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.05rem, 3.5vw, 1.25rem);
+    line-height: 1.45;
+    color: var(--text-main);
+    margin-bottom: 20px;
+  }
+  .fc-options { display: flex; flex-direction: column; gap: 10px; }
+  .fc-tip {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: #EEF4FF;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    line-height: 1.5;
+    animation: fadeIn 0.3s ease;
+  }
+  .fc-done-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    margin-top: 4px;
+  }
+  .fc-done-correct { background: var(--correct-bg); color: #166534; }
+  .fc-done-wrong   { background: var(--wrong-bg);   color: #991B1B; }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar-wrap {
+    background: var(--neutral-bg);
+    border-radius: 50px;
+    height: 6px;
+    margin: 0 0 4px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--mn-blue) 0%, var(--mn-blue-light) 100%);
+    border-radius: 50px;
+    transition: width 0.4s ease;
+  }
+
+  /* ── INTRO BANNER ── */
+  .intro-banner {
+    background: white;
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    border-left: 5px solid var(--mn-gold);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    animation: fadeIn 0.5s ease;
+  }
+  .intro-icon { font-size: 2rem; flex-shrink: 0; }
+  .intro-text h3 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--mn-blue);
+    margin-bottom: 4px;
+  }
+  .intro-text p { font-size: 0.9rem; color: var(--text-muted); font-weight: 600; line-height: 1.5; }
+
+  /* ── TOPIC SECTION DIVIDERS ── */
+  .topic-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 0 2px;
+    animation: fadeIn 0.4s ease;
+  }
+  .topic-divider-line { flex: 1; height: 1px; background: var(--border); }
+  .topic-divider-label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 480px) {
+    .top-bar { gap: 8px; padding: 10px 12px; }
+    .score-pill { padding: 7px 14px; font-size: 0.9rem; }
+    .mode-btn { padding: 6px 10px; font-size: 0.8rem; }
+    .shuffle-btn { padding: 8px 14px; font-size: 0.85rem; }
+    main { padding: 18px 12px 50px; }
+    .q-card { padding: 18px 16px 16px; }
+    .flashcard { padding: 22px 18px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="header-emoji">🌊</span>
+  <div class="header-title">Minnesota <span>DMV</span> Practice</div>
+  <div class="header-sub">Land of 10,000 Lakes · Driver's Knowledge Test</div>
+  <div class="header-wave"></div>
+</header>
+
+<div class="top-bar">
+  <div class="score-pill">
+    ⭐ Score: <span class="score-num" id="scoreDisplay">0 / 0</span>
+  </div>
+  <div class="progress-pill" id="progressDisplay">Q 0 of 40</div>
+  <div class="mode-toggle">
+    <button class="mode-btn active" id="quizModeBtn" onclick="setMode('quiz')">📋 Quiz</button>
+    <button class="mode-btn" id="fcModeBtn" onclick="setMode('flashcard')">🃏 Cards</button>
+  </div>
+  <button class="shuffle-btn" onclick="newSet()">🔀 New Set of 40</button>
+</div>
+
+<main id="mainContent">
+  <!-- Rendered by JS -->
+</main>
+
+<script>
+// ════════════════════════════════════════════
+//  QUESTION DATA — 100 MN DMV questions
+// ════════════════════════════════════════════
+const ALL_QUESTIONS = [
+  {
+    q: "What does an octagonal (8-sided) red sign mean?",
+    opts: ["Yield to cross traffic","Slow down and proceed with caution","Come to a complete stop","No entry allowed"],
+    ans: 2, topic: "Traffic Signs",
+    tip: "The octagon shape is used exclusively for STOP signs — it's the only 8-sided traffic sign."
+  },
+  {
+    q: "A triangular sign with a red border and white background means:",
+    opts: ["Stop ahead","Yield the right-of-way","No passing zone","Speed limit change ahead"],
+    ans: 1, topic: "Traffic Signs",
+    tip: "The yield sign is the only downward-pointing triangle used on U.S. roads."
+  },
+  {
+    q: "A yellow diamond-shaped sign is:",
+    opts: ["A regulatory sign","A guide sign","A warning sign","A construction sign"],
+    ans: 2, topic: "Traffic Signs",
+    tip: "Yellow diamond signs warn of hazards or changes in road conditions ahead."
+  },
+  {
+    q: "What does a flashing yellow traffic light mean?",
+    opts: ["Stop and wait for green","The light is about to turn red","Slow down and proceed with caution","Yield to all traffic before proceeding"],
+    ans: 2, topic: "Traffic Signals",
+    tip: "A flashing yellow is a caution signal — slow down, look, and proceed carefully."
+  },
+  {
+    q: "What does a flashing RED traffic light require you to do?",
+    opts: ["Slow down and proceed carefully","Treat it as a yield sign","Treat it as a stop sign — come to a complete stop","Proceed only if no traffic is present"],
+    ans: 2, topic: "Traffic Signals",
+    tip: "A flashing red light has the same legal meaning as a stop sign under MN law."
+  },
+  {
+    q: "A solid white line between lanes on a highway means:",
+    opts: ["Passing is permitted","Lane changes are discouraged but not prohibited","You must not cross the line","HOV lane boundary"],
+    ans: 1, topic: "Road Markings",
+    tip: "A solid white line discourages lane changes; a double white line actually prohibits them."
+  },
+  {
+    q: "What does a double solid yellow center line mean?",
+    opts: ["Passing is allowed for both directions","Passing is allowed only from the left lane","No passing is allowed from either direction","Left turns are prohibited"],
+    ans: 2, topic: "Road Markings",
+    tip: "Double solid yellow lines prohibit passing in both directions of travel."
+  },
+  {
+    q: "A pennant-shaped (triangular) yellow sign on the LEFT side of the road means:",
+    opts: ["Yield ahead","No passing zone","School zone","Narrow bridge ahead"],
+    ans: 1, topic: "Traffic Signs",
+    tip: "The pennant-shaped sign is posted on the left side and marks the beginning of a no-passing zone."
+  },
+  {
+    q: "Orange signs on the road indicate:",
+    opts: ["School zones","Railroad crossings","Construction or work zones","State highway routes"],
+    ans: 2, topic: "Traffic Signs",
+    tip: "Orange is the standard color for all construction and work zone signs."
+  },
+  {
+    q: "What does a green traffic light mean?",
+    opts: ["Proceed without looking","You have the right-of-way and may proceed if it is safe","Speed up to clear the intersection","All cross-traffic is stopped"],
+    ans: 1, topic: "Traffic Signals",
+    tip: "Green means you MAY proceed, but you must still yield to pedestrians and traffic that hasn't cleared."
+  },
+  {
+    q: "A white rectangular sign with black lettering is typically:",
+    opts: ["A warning sign","A guide or informational sign","A regulatory sign","A construction sign"],
+    ans: 2, topic: "Traffic Signs",
+    tip: "White rectangular signs like speed limit signs are regulatory — they state laws you must obey."
+  },
+  {
+    q: "What does a 'WRONG WAY' sign mean?",
+    opts: ["The road ahead is closed","You are traveling in the wrong direction on a one-way road","You missed a turn","Road construction is ahead"],
+    ans: 1, topic: "Traffic Signs",
+    tip: "A red and white WRONG WAY sign means you're driving against traffic — stop and reverse."
+  },
+  {
+    q: "Blue signs on highways typically indicate:",
+    opts: ["Rest areas and services (gas, food, lodging)","Regulatory information","Hazard warnings","Distance to the next city"],
+    ans: 0, topic: "Traffic Signs",
+    tip: "Blue highway signs guide motorists to services like gas stations, restaurants, and rest areas."
+  },
+  {
+    q: "What shape is a railroad crossing warning sign?",
+    opts: ["Rectangle","Circle","Pentagon","Diamond"],
+    ans: 1, topic: "Traffic Signs",
+    tip: "The advance railroad crossing warning sign is a round yellow sign with an X and RR."
+  },
+  {
+    q: "A five-sided (pentagon) sign is used for:",
+    opts: ["Hospital zones","School zones","Work zones","State parks"],
+    ans: 1, topic: "Traffic Signs",
+    tip: "The pentagon-shaped sign is used exclusively to mark school zones across the country."
+  },
+  {
+    q: "In Minnesota, what is the default speed limit in an urban/city district unless otherwise posted?",
+    opts: ["25 mph","30 mph","35 mph","40 mph"],
+    ans: 1, topic: "Speed Limits",
+    tip: "MN Statute §169.14 sets the default speed limit at 30 mph in urban districts."
+  },
+  {
+    q: "What is the default speed limit on a rural highway in Minnesota where no speed limit is posted?",
+    opts: ["55 mph","60 mph","65 mph","70 mph"],
+    ans: 2, topic: "Speed Limits",
+    tip: "MN default is 55 mph on two-lane rural roads and 65 mph on divided four-lane rural roads."
+  },
+  {
+    q: "What is the maximum speed limit on a Minnesota interstate highway?",
+    opts: ["65 mph","70 mph","75 mph","80 mph"],
+    ans: 1, topic: "Speed Limits",
+    tip: "Minnesota's maximum posted interstate speed limit is 70 mph on rural interstates."
+  },
+  {
+    q: "What is the speed limit in an alley in Minnesota?",
+    opts: ["5 mph","10 mph","15 mph","20 mph"],
+    ans: 1, topic: "Speed Limits",
+    tip: "MN law sets a 10 mph speed limit in alleys — go slow and watch for pedestrians."
+  },
+  {
+    q: "In a school zone in Minnesota, what is the typical reduced speed limit when children are present?",
+    opts: ["10 mph","15 mph","20 mph","25 mph"],
+    ans: 2, topic: "Speed Limits",
+    tip: "Most MN school zones have a 20 mph limit when children are present or during school hours."
+  },
+  {
+    q: "Which of the following is true about Minnesota's basic speed law?",
+    opts: ["You may drive at the posted speed limit regardless of conditions","You must drive at a speed reasonable and prudent for conditions, even below the posted limit","The posted limit is always the minimum acceptable speed","Speed limits only apply during daylight hours"],
+    ans: 1, topic: "Speed Limits",
+    tip: "Minnesota's basic speed law requires driving at a safe speed for current road, weather, and traffic conditions."
+  },
+  {
+    q: "How fast may you drive past a stationary emergency vehicle with flashing lights on a two-lane road in Minnesota?",
+    opts: ["The posted speed limit","20 mph under the posted limit","15 mph under the posted limit","5 mph"],
+    ans: 2, topic: "Speed Limits",
+    tip: "MN's Move Over law requires reducing speed by at least 15 mph below the posted limit when you cannot change lanes."
+  },
+  {
+    q: "Driving too slowly on a highway can:",
+    opts: ["Never be ticketed — only speeding is illegal","Be a violation if it impedes normal traffic flow","Be done freely in the right lane","Only be enforced on interstates"],
+    ans: 1, topic: "Speed Limits",
+    tip: "Minnesota law prohibits driving so slowly that you impede the normal flow of traffic."
+  },
+  {
+    q: "What is the speed limit in a residential district in Minnesota if not otherwise posted?",
+    opts: ["25 mph","30 mph","35 mph","40 mph"],
+    ans: 1, topic: "Speed Limits",
+    tip: "Residential streets fall under the urban district default of 30 mph in Minnesota."
+  },
+  {
+    q: "Speeding 20 mph or more over the posted limit in Minnesota is classified as:",
+    opts: ["A petty misdemeanor","A misdemeanor","A gross misdemeanor","A felony"],
+    ans: 1, topic: "Speed Limits",
+    tip: "Speeding 20+ mph over the limit is a misdemeanor in Minnesota, carrying serious penalties."
+  },
+  {
+    q: "At an intersection with no signs or signals, which vehicle has the right-of-way?",
+    opts: ["The vehicle traveling the fastest","The vehicle on the left","The vehicle on the right","The larger vehicle"],
+    ans: 2, topic: "Right of Way",
+    tip: "At uncontrolled intersections, you must yield to any vehicle approaching from your right."
+  },
+  {
+    q: "When two vehicles reach an uncontrolled intersection at the same time, which has the right-of-way?",
+    opts: ["The vehicle turning left","The vehicle going straight","The vehicle on the right","The vehicle on a larger road"],
+    ans: 2, topic: "Right of Way",
+    tip: "The vehicle on the right has the right-of-way when two vehicles arrive simultaneously."
+  },
+  {
+    q: "A vehicle turning LEFT at a green light must yield to:",
+    opts: ["No one — green means go","Oncoming traffic and pedestrians","Only pedestrians","Only cyclists"],
+    ans: 1, topic: "Right of Way",
+    tip: "A left-turning vehicle must always yield to oncoming traffic and pedestrians in the crosswalk."
+  },
+  {
+    q: "When entering a roundabout, you must yield to:",
+    opts: ["Vehicles entering from your left","Vehicles already circulating inside the roundabout","Vehicles entering from your right","No one — first come, first served"],
+    ans: 1, topic: "Right of Way",
+    tip: "Traffic already in a roundabout has the right-of-way; entering vehicles must yield."
+  },
+  {
+    q: "At a T-intersection, the vehicle on the road that ends must:",
+    opts: ["Sound the horn and proceed","Yield to vehicles on the through road","Always turn right","Have the right-of-way if it arrives first"],
+    ans: 1, topic: "Right of Way",
+    tip: "The vehicle on the terminating (dead-end) road must always yield to through traffic."
+  },
+  {
+    q: "When a pedestrian is in a crosswalk, drivers must:",
+    opts: ["Slow down and proceed if there is room","Sound their horn to alert the pedestrian","Stop and yield the entire crosswalk until the pedestrian crosses","Proceed if the pedestrian is on the opposite half of the road"],
+    ans: 2, topic: "Right of Way",
+    tip: "MN law requires stopping for pedestrians in crosswalks — in both lanes, not just the lane they're in."
+  },
+  {
+    q: "Who has the right-of-way when a vehicle is leaving a parking lot or driveway?",
+    opts: ["The exiting vehicle","Vehicles on the public roadway","Whichever vehicle is larger","The vehicle traveling faster"],
+    ans: 1, topic: "Right of Way",
+    tip: "Vehicles entering or exiting private property must always yield to traffic on the public road."
+  },
+  {
+    q: "An emergency vehicle with lights and siren activated is approaching. You must:",
+    opts: ["Speed up to get out of the way quickly","Stop immediately wherever you are","Pull to the right edge of the road and stop","Slow down and move left"],
+    ans: 2, topic: "Emergency Vehicles",
+    tip: "MN law §169.20 requires pulling to the right and stopping when an emergency vehicle approaches."
+  },
+  {
+    q: "Minnesota's Move Over law requires drivers to:",
+    opts: ["Yield to pedestrians in all crosswalks","Change lanes or slow down when passing stationary emergency, maintenance, or tow trucks with lights flashing","Move right when another vehicle wants to pass","Yield when entering a highway on-ramp"],
+    ans: 1, topic: "Emergency Vehicles",
+    tip: "MN's Move Over law protects emergency responders — change lanes or reduce speed when passing them."
+  },
+  {
+    q: "A blind pedestrian with a white cane or guide dog at an intersection means:",
+    opts: ["Proceed normally","Honk to alert them","You must yield and allow them to cross safely before proceeding","They must wait for you"],
+    ans: 2, topic: "Right of Way",
+    tip: "Minnesota requires ALL vehicles to stop for a blind person using a white cane or guide dog."
+  },
+  {
+    q: "When merging onto a freeway, who has the right-of-way?",
+    opts: ["The merging vehicle","Traffic already on the freeway","The larger vehicle","Whichever vehicle is traveling faster"],
+    ans: 1, topic: "Right of Way",
+    tip: "Merging vehicles must yield to traffic already on the freeway — use the on-ramp to match speed."
+  },
+  {
+    q: "At a four-way stop, vehicles should proceed:",
+    opts: ["Based on vehicle size","In the order they arrived; ties go to the vehicle on the right","Based on speed of approach","Largest road gets priority"],
+    ans: 1, topic: "Right of Way",
+    tip: "At four-way stops, first-come-first-served applies; ties are broken by yielding to the vehicle on the right."
+  },
+  {
+    q: "When a school bus is stopped with flashing red lights and an extended stop arm, traffic on an undivided road must:",
+    opts: ["Slow to 15 mph","Stop and remain stopped until the lights stop flashing and the arm is retracted","Stop only if on the same side as the bus","Stop only if children are visible"],
+    ans: 1, topic: "School Buses",
+    tip: "MN law requires all traffic on undivided roads to stop in BOTH directions for a school bus with red lights."
+  },
+  {
+    q: "In Minnesota, what is the legal blood alcohol content (BAC) limit for drivers age 21 and over?",
+    opts: ["0.05%","0.08%","0.10%","0.12%"],
+    ans: 1, topic: "Alcohol & DWI",
+    tip: "The legal BAC limit for drivers 21+ in Minnesota is 0.08%."
+  },
+  {
+    q: "What is the BAC limit for drivers under age 21 in Minnesota?",
+    opts: ["0.08%","0.04%","0.02%","0.00% (zero tolerance)"],
+    ans: 3, topic: "Alcohol & DWI",
+    tip: "Minnesota has a 'not a drop' zero-tolerance law for drivers under 21 — any detectable alcohol is a violation."
+  },
+  {
+    q: "What is the BAC threshold in Minnesota for the more severe 'aggravated DWI' charge?",
+    opts: ["0.10%","0.12%","0.16%","0.20%"],
+    ans: 2, topic: "Alcohol & DWI",
+    tip: "A BAC of 0.16% or higher triggers enhanced aggravated DWI penalties in Minnesota."
+  },
+  {
+    q: "Under Minnesota's implied consent law, by driving on MN roads you have automatically agreed to:",
+    opts: ["Pay all traffic fines without court","Submit to a chemical test if lawfully requested by an officer","Allow vehicle searches at any time","Accept any penalty imposed by an officer"],
+    ans: 1, topic: "Alcohol & DWI",
+    tip: "Minnesota's implied consent law means all drivers consent to BAC testing — refusal causes automatic revocation."
+  },
+  {
+    q: "Refusing a lawful BAC test in Minnesota results in:",
+    opts: ["No additional penalty beyond the DWI charge","Automatic license revocation and can be used against you in court","Only a written warning","A $50 fine"],
+    ans: 1, topic: "Alcohol & DWI",
+    tip: "Test refusal leads to mandatory license revocation and is itself a separate criminal charge in Minnesota."
+  },
+  {
+    q: "A first-time DWI in Minnesota is typically classified as:",
+    opts: ["Petty misdemeanor","Misdemeanor","Gross misdemeanor","Felony"],
+    ans: 1, topic: "Alcohol & DWI",
+    tip: "A first DWI offense in MN is a misdemeanor unless aggravating factors (high BAC, child in car) apply."
+  },
+  {
+    q: "How many DWI convictions within 10 years can result in a felony charge in Minnesota?",
+    opts: ["Two","Three","Four or more","Any DWI is a felony"],
+    ans: 2, topic: "Alcohol & DWI",
+    tip: "A fourth DWI offense within 10 years (or third with a prior felony DWI) becomes a felony in Minnesota."
+  },
+  {
+    q: "What happens to your Minnesota driver's license after a first DWI conviction?",
+    opts: ["Nothing — it is only revoked after a second offense","It is revoked for 90 days","It is suspended for 30 days","It is cancelled immediately and permanently"],
+    ans: 1, topic: "Alcohol & DWI",
+    tip: "A first DWI in Minnesota results in a 90-day license revocation."
+  },
+  {
+    q: "In Minnesota, can alcohol impair your driving even if your BAC is below 0.08%?",
+    opts: ["No — only BAC above 0.08% is impairment","Yes — you can still be charged with DWI if impaired regardless of BAC","No — 0.08% is the only legal standard","Only if you are under 21"],
+    ans: 1, topic: "Alcohol & DWI",
+    tip: "MN DWI law includes driving while impaired regardless of BAC — officers can charge based on observed impairment."
+  },
+  {
+    q: "An open container of alcohol in the passenger area of a vehicle in Minnesota is:",
+    opts: ["Legal if the driver is not drinking","Legal in the back seat","Illegal — open containers are prohibited anywhere in the passenger area","Only illegal on interstates"],
+    ans: 2, topic: "Alcohol & DWI",
+    tip: "Minnesota prohibits open containers of alcohol anywhere in the passenger compartment of a moving vehicle."
+  },
+  {
+    q: "Before changing lanes, you should:",
+    opts: ["Only check your rearview mirror","Signal, check mirrors, and check your blind spot","Signal and immediately move over","Tap brakes to warn following drivers"],
+    ans: 1, topic: "Lane Changes",
+    tip: "Safe lane changes always require signaling, checking all mirrors, AND looking over your shoulder for blind spots."
+  },
+  {
+    q: "How far in advance must you signal before turning or changing lanes in Minnesota?",
+    opts: ["50 feet","100 feet","150 feet","200 feet"],
+    ans: 1, topic: "Lane Changes",
+    tip: "MN Statute §169.19 requires signaling at least 100 feet before turning in urban areas."
+  },
+  {
+    q: "On a multi-lane highway, the left lane should primarily be used for:",
+    opts: ["Slow-moving traffic","Trucks and large vehicles","Passing only; move right after passing","Any speed of travel"],
+    ans: 2, topic: "Lane Changes",
+    tip: "MN law §169.18 requires keeping right except when passing — the left lane is for passing only."
+  },
+  {
+    q: "When a lane ends and traffic must merge, the proper technique is:",
+    opts: ["Force your way in early to avoid being last","Zipper merge — take turns merging at the point where the lane ends","Always yield and wait for a large gap","Speed up to pass as many cars as possible before merging"],
+    ans: 1, topic: "Lane Changes",
+    tip: "MnDOT officially endorses the 'zipper merge' — use the full lane until the merge point, then take turns."
+  },
+  {
+    q: "You are driving on a two-lane road. A driver in front of you wants to turn left. You should:",
+    opts: ["Pass them on the left","Pass them on the right using the shoulder","Wait behind them until they complete the turn","Honk and pass on either side"],
+    ans: 2, topic: "Lane Changes",
+    tip: "You must wait safely behind a left-turning vehicle — passing on the shoulder is illegal and dangerous."
+  },
+  {
+    q: "When is it legal to pass on the right in Minnesota?",
+    opts: ["Never","When the vehicle ahead is turning left and there is a usable lane to the right","Only on divided highways with two or more lanes in the same direction","Both B and C"],
+    ans: 3, topic: "Lane Changes",
+    tip: "Passing on the right is legal when the vehicle ahead turns left and a proper lane exists, or on multi-lane roads."
+  },
+  {
+    q: "If you miss your exit on a freeway, you should:",
+    opts: ["Back up on the shoulder to reach the exit","Stop and wait for traffic to clear","Continue to the next exit and turn around safely","Cross the median to reverse direction"],
+    ans: 2, topic: "Lane Changes",
+    tip: "Backing up on a freeway or crossing a median is extremely dangerous and illegal — always use the next exit."
+  },
+  {
+    q: "How far from a fire hydrant must you park in Minnesota?",
+    opts: ["5 feet","10 feet","15 feet","20 feet"],
+    ans: 1, topic: "Parking",
+    tip: "MN Statute §169.34 prohibits parking within 10 feet of a fire hydrant."
+  },
+  {
+    q: "How far from an intersection must you park in Minnesota?",
+    opts: ["10 feet","15 feet","20 feet","30 feet"],
+    ans: 3, topic: "Parking",
+    tip: "Parking within 30 feet of a stop sign, yield sign, or traffic signal is prohibited in Minnesota."
+  },
+  {
+    q: "When parking uphill with a curb, which direction should you turn your front wheels?",
+    opts: ["Straight ahead","Into the curb (right)","Away from the curb (left)","It doesn't matter"],
+    ans: 2, topic: "Parking",
+    tip: "Uphill with curb = turn wheels LEFT (away from curb) so if brakes fail, the car rolls into the curb."
+  },
+  {
+    q: "When parking downhill with a curb, which direction should you turn your front wheels?",
+    opts: ["Away from the curb (left)","Into the curb (right)","Straight","Toward the center of the road"],
+    ans: 1, topic: "Parking",
+    tip: "Downhill with curb = turn wheels RIGHT (into the curb) so the car won't roll into traffic if brakes fail."
+  },
+  {
+    q: "Parking in a space designated for persons with disabilities without a valid permit in Minnesota results in:",
+    opts: ["A verbal warning","A $25 fine","A fine of at least $200","Vehicle impoundment only"],
+    ans: 2, topic: "Parking",
+    tip: "Illegally parking in a handicapped space carries a minimum $200 fine in Minnesota."
+  },
+  {
+    q: "You may park in front of a driveway:",
+    opts: ["If only for a few minutes","If your hazard lights are on","Never — it blocks access","Only if the homeowner gives permission"],
+    ans: 2, topic: "Parking",
+    tip: "Blocking a driveway is always illegal in Minnesota, regardless of duration or any permission."
+  },
+  {
+    q: "How close to a railroad crossing may you legally park in Minnesota?",
+    opts: ["Within 25 feet","Within 50 feet if not blocking the view","Not within 50 feet of the nearest rail","Not within 100 feet"],
+    ans: 2, topic: "Parking",
+    tip: "MN law prohibits parking within 50 feet of the nearest railroad track."
+  },
+  {
+    q: "You are at an intersection and an emergency vehicle approaches from behind. What should you do?",
+    opts: ["Speed through the intersection to clear it quickly","Stop in the intersection until the emergency vehicle passes","Clear the intersection, pull to the right, and stop","Slow down and wave the emergency vehicle around you"],
+    ans: 2, topic: "Emergency Vehicles",
+    tip: "Clear the intersection first, then pull right and stop — never block an intersection for an emergency vehicle."
+  },
+  {
+    q: "On a divided highway with a median, when a school bus stops with flashing red lights, traffic on the OPPOSITE side of the median must:",
+    opts: ["Also stop","Slow to 15 mph","Continue at normal speed — the median creates a physical barrier","Stop only if children are crossing"],
+    ans: 2, topic: "School Buses",
+    tip: "On divided highways, only traffic on the SAME side as the bus must stop; the median separates the traffic."
+  },
+  {
+    q: "How far back must you stop from a school bus with flashing red lights?",
+    opts: ["10 feet","20 feet","30 feet","50 feet"],
+    ans: 1, topic: "School Buses",
+    tip: "Minnesota law requires stopping at least 20 feet from a stopped school bus with flashing red lights."
+  },
+  {
+    q: "What do amber (yellow) flashing lights on a school bus mean?",
+    opts: ["The bus is stopped — stop immediately","The bus is about to stop — prepare to stop","The bus is turning","The bus is moving and you may pass"],
+    ans: 1, topic: "School Buses",
+    tip: "Amber lights warn that the bus is slowing to stop — prepare to stop but do not pass."
+  },
+  {
+    q: "A school bus is loading students. The red lights start flashing. You are approaching from the front on the same road. You must:",
+    opts: ["Continue if you can pass safely","Stop before reaching the bus and wait","Slow to 15 mph and proceed","Sound your horn and proceed"],
+    ans: 1, topic: "School Buses",
+    tip: "You must stop regardless of which direction you're traveling on an undivided road when red lights flash."
+  },
+  {
+    q: "Passing a stopped school bus with flashing red lights in Minnesota is:",
+    opts: ["A petty misdemeanor","A misdemeanor","A gross misdemeanor","A felony"],
+    ans: 2, topic: "School Buses",
+    tip: "Illegally passing a school bus is a gross misdemeanor in MN with fines up to $3,000."
+  },
+  {
+    q: "At a railroad crossing with a stop sign, you must:",
+    opts: ["Slow down and check for trains","Come to a complete stop, look both ways, and proceed when safe","Stop only if a train is visible","Yield to trains only at night"],
+    ans: 1, topic: "Railroad Crossings",
+    tip: "A stop sign at a railroad crossing requires a full stop regardless of whether a train is visible."
+  },
+  {
+    q: "At a railroad crossing with flashing red lights and/or lowered gates, you must:",
+    opts: ["Stop and wait until lights stop flashing and gates are fully raised","Stop briefly and proceed if no train is visible","Slow to 15 mph and proceed with caution","Honk and proceed"],
+    ans: 0, topic: "Railroad Crossings",
+    tip: "Never cross a railroad crossing with flashing lights or lowered gates — always wait for the all-clear."
+  },
+  {
+    q: "How close to a railroad track should you stop at a crossing?",
+    opts: ["At least 5 feet from the nearest rail","At least 10 feet from the nearest rail","At least 15 feet from the nearest rail","At least 25 feet from the nearest rail"],
+    ans: 2, topic: "Railroad Crossings",
+    tip: "Minnesota law requires stopping between 15 and 50 feet from the nearest rail at a crossing."
+  },
+  {
+    q: "After a train passes at a railroad crossing, you should:",
+    opts: ["Immediately proceed across","Wait for a gap in traffic, then cross","Check that no other train is coming from the opposite direction before crossing","Wait 30 seconds as a precaution"],
+    ans: 2, topic: "Railroad Crossings",
+    tip: "Always look both ways after one train passes — another train may be coming from the opposite direction."
+  },
+  {
+    q: "Which vehicle must always stop at a railroad crossing even when no signal is operating?",
+    opts: ["Motorcycles","Passenger cars with trailers","Buses and vehicles carrying hazardous materials","All vehicles must stop at all crossings"],
+    ans: 2, topic: "Railroad Crossings",
+    tip: "Buses, school buses, and hazmat vehicles must always stop at all railroad crossings, signal or not."
+  },
+  {
+    q: "The recommended minimum following distance under normal conditions is:",
+    opts: ["1 second","2 seconds","3 seconds","4 seconds"],
+    ans: 2, topic: "Following Distance",
+    tip: "The Minnesota Driver's Manual recommends at least a 3-second following distance under normal conditions."
+  },
+  {
+    q: "In poor weather conditions (rain, snow, fog), you should increase following distance to at least:",
+    opts: ["3 seconds","4 seconds","5 to 6 seconds or more","10 seconds"],
+    ans: 2, topic: "Following Distance",
+    tip: "Double or triple your following distance in hazardous conditions — 6+ seconds on snow or ice."
+  },
+  {
+    q: "When must you turn on your headlights in Minnesota?",
+    opts: ["Only at night (sunset to sunrise)","From sunset to sunrise AND any time visibility is less than 500 feet","Whenever it rains","Only when driving on highways"],
+    ans: 1, topic: "Headlights",
+    tip: "MN Statute §169.48 requires headlights from sunset to sunrise and when visibility is under 500 feet."
+  },
+  {
+    q: "When following another vehicle at night, you should use:",
+    opts: ["High beams always","Low beams within 500 feet of the vehicle ahead","Parking lights only","High beams unless within 1,000 feet of an oncoming vehicle"],
+    ans: 1, topic: "Headlights",
+    tip: "Dim your headlights (use low beams) when within 500 feet of the vehicle you are following."
+  },
+  {
+    q: "When must you dim your high beams for oncoming vehicles in Minnesota?",
+    opts: ["Within 300 feet","Within 500 feet","Within 750 feet","Within 1,000 feet"],
+    ans: 3, topic: "Headlights",
+    tip: "MN law requires dimming high beams when within 1,000 feet of an oncoming vehicle."
+  },
+  {
+    q: "If your headlights fail at night, you should:",
+    opts: ["Continue at a slower speed","Use your hazard flashers and pull safely off the road","Use your parking lights","Flash your interior lights"],
+    ans: 1, topic: "Headlights",
+    tip: "If headlights fail, activate hazard lights and pull safely off the road immediately — don't keep driving."
+  },
+  {
+    q: "In Minnesota, when it is raining hard enough to use your windshield wipers, you must:",
+    opts: ["Reduce speed by half","Also turn on your headlights","Pull over and wait","Only use low beams after dark"],
+    ans: 1, topic: "Headlights",
+    tip: "Minnesota law requires headlights to be on whenever windshield wipers are in use."
+  },
+  {
+    q: "When driving on ice or packed snow, your stopping distance compared to dry pavement:",
+    opts: ["Is about the same","Is doubled","Can be 10 times longer","Is slightly increased"],
+    ans: 2, topic: "Winter Driving",
+    tip: "On icy roads, stopping distance can be up to 10 times greater than on dry pavement — allow plenty of space."
+  },
+  {
+    q: "If your vehicle begins to skid on ice, you should:",
+    opts: ["Brake hard and steer straight","Accelerate out of the skid","Steer into the direction of the skid and ease off the gas","Crank the wheel hard in the opposite direction of the skid"],
+    ans: 2, topic: "Winter Driving",
+    tip: "Steer gently in the direction the rear is sliding and ease off the gas — braking hard worsens the skid."
+  },
+  {
+    q: "Before driving in winter, Minnesota drivers should:",
+    opts: ["Warm up the car inside a closed garage","Clear all snow and ice from ALL windows, lights, mirrors, and the roof","Only clear the front windshield for visibility","Let the defroster clear windows while driving slowly"],
+    ans: 1, topic: "Winter Driving",
+    tip: "Clear ALL snow and ice from the vehicle — snow flying from a roof is a hazard and can be a violation."
+  },
+  {
+    q: "What is 'black ice'?",
+    opts: ["A thick dark layer of ice easily visible on the road","A thin, transparent layer of ice nearly impossible to see on the pavement","Ice that forms only in parking lots","Ice with gravel embedded in it"],
+    ans: 1, topic: "Winter Driving",
+    tip: "Black ice is a thin, nearly invisible layer of ice that blends with the road surface — extremely dangerous."
+  },
+  {
+    q: "When driving in heavy snow or blizzard conditions in Minnesota, if you become stranded you should:",
+    opts: ["Abandon the vehicle and walk for help","Stay with the vehicle, run the engine occasionally for heat, and keep one window cracked","Run the engine continuously for maximum warmth","Flash your lights constantly to attract attention"],
+    ans: 1, topic: "Winter Driving",
+    tip: "Stay with your vehicle (it's shelter) — run engine sparingly and crack a window to prevent CO buildup."
+  },
+  {
+    q: "Bridges and overpasses in winter tend to be more dangerous because:",
+    opts: ["They have more traffic","They are narrower","They freeze before and stay frozen longer than regular road surfaces","Their surfaces are rougher"],
+    ans: 2, topic: "Winter Driving",
+    tip: "Bridges are exposed to cold air on all sides, causing them to freeze faster and thaw more slowly."
+  },
+  {
+    q: "In Minnesota, motorcycle helmet requirements apply to:",
+    opts: ["All riders regardless of age","Riders under 18 years of age","Riders under 21 years of age","No riders — helmets are optional"],
+    ans: 1, topic: "Motorcycles & Bicycles",
+    tip: "Minnesota requires motorcycle helmets for riders under 18; eye protection is required for all riders."
+  },
+  {
+    q: "When passing a motorcycle, drivers should:",
+    opts: ["Pass very closely since motorcycles are smaller","Give at least the same passing distance as for a car — the full lane width","Honk before passing","Flash lights to signal the pass"],
+    ans: 1, topic: "Motorcycles & Bicycles",
+    tip: "A motorcycle deserves the full lane width when passing — give the same clearance as you would any vehicle."
+  },
+  {
+    q: "A motorcycle is entitled to:",
+    opts: ["Only half of a lane","The full use of a lane","The right portion of a lane only","No specific lane rights"],
+    ans: 1, topic: "Motorcycles & Bicycles",
+    tip: "Motorcycles have the same right to a full lane as any other vehicle under Minnesota law."
+  },
+  {
+    q: "Lane splitting (a motorcycle riding between lanes of traffic) is:",
+    opts: ["Legal in Minnesota","Legal only on interstates","Legal only at speeds under 30 mph","Illegal in Minnesota"],
+    ans: 3, topic: "Motorcycles & Bicycles",
+    tip: "Lane splitting is not legal in Minnesota — motorcycles must stay within a single lane of traffic."
+  },
+  {
+    q: "When a bicyclist is riding in the road, drivers must:",
+    opts: ["Force them onto the shoulder","Sound the horn to alert them","Pass with at least 3 feet of clearance","Pass only in a no-passing zone"],
+    ans: 2, topic: "Motorcycles & Bicycles",
+    tip: "Minnesota's '3-foot passing law' requires at least 3 feet of clearance when passing a bicyclist."
+  },
+  {
+    q: "Bicyclists in Minnesota are required to:",
+    opts: ["Ride on sidewalks only","Follow the same traffic laws as motor vehicles, including stopping at red lights","Wear helmets at all ages","Register their bicycle with the state"],
+    ans: 1, topic: "Motorcycles & Bicycles",
+    tip: "Bicyclists must obey all traffic laws in Minnesota just like motor vehicle drivers."
+  },
+  {
+    q: "When turning right, a driver must watch for bicyclists because:",
+    opts: ["Cyclists must yield to turning vehicles","Cyclists may be in a bike lane to your right and you must not cut them off","Cyclists have no right-of-way at intersections","Cyclists ride on the left side of the road"],
+    ans: 1, topic: "Motorcycles & Bicycles",
+    tip: "Right-hook collisions occur when a car cuts off a cyclist in a bike lane — always check right before turning."
+  },
+  {
+    q: "In Minnesota, texting while driving is:",
+    opts: ["Legal if done quickly at a stoplight","Legal for adults over 21","Illegal for all drivers","Only illegal for drivers under 18"],
+    ans: 2, topic: "MN Laws",
+    tip: "Minnesota bans all texting while driving for ALL drivers, regardless of age, including at red lights."
+  },
+  {
+    q: "Minnesota's hands-free law prohibits:",
+    opts: ["All phone use while driving","Holding your phone while driving — hands-free use is permitted","Phone use only on interstates","Only texting, not calling"],
+    ans: 1, topic: "MN Laws",
+    tip: "MN's hands-free law (2019) prohibits holding a phone while driving — Bluetooth/speakerphone set down is OK."
+  },
+  {
+    q: "What is the minimum age to obtain a full, unrestricted Minnesota driver's license?",
+    opts: ["16","17","18","21"],
+    ans: 1, topic: "MN Laws",
+    tip: "Minnesota's GDL allows a full license at age 17 after holding a provisional license for 12 months without violations."
+  },
+  {
+    q: "What does a solid yellow traffic line on YOUR side of the road mean?",
+    opts: ["Passing is allowed","No passing is allowed from your side","Turn lane ahead","Lane ends soon"],
+    ans: 1, topic: "Road Markings",
+    tip: "A solid yellow line on your side means no passing from your direction; dashed means passing is allowed."
+  },
+  {
+    q: "When you hear a siren but cannot see the emergency vehicle, you should:",
+    opts: ["Continue driving normally until you see the vehicle","Speed up to clear the area","Slow down, move right, and prepare to stop","Stop immediately where you are"],
+    ans: 2, topic: "Emergency Vehicles",
+    tip: "When you hear a siren but can't locate the source, slow down, move right, and be prepared to stop."
+  },
+  {
+    q: "How long after moving to Minnesota must a new resident obtain a Minnesota driver's license?",
+    opts: ["30 days","60 days","90 days","6 months"],
+    ans: 1, topic: "MN Laws",
+    tip: "New Minnesota residents must obtain a MN driver's license within 60 days of establishing residency."
+  },
+  {
+    q: "Under Minnesota's seatbelt law, who is required to wear a seatbelt?",
+    opts: ["Only the driver","The driver and front-seat passengers","All occupants of the vehicle","Only occupants under 18"],
+    ans: 2, topic: "MN Laws",
+    tip: "Minnesota law requires ALL occupants — front and back seats — to wear a seatbelt; driver is responsible for minors."
+  }
+];
+
+// ════════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════════
+let mode = 'quiz';
+let currentSet = [];
+let answers = [];      // -1=unanswered, index=chosen
+let fcIndex = 0;
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function newSet() {
+  const indices = shuffle([...Array(ALL_QUESTIONS.length).keys()]).slice(0, 40);
+  currentSet = indices.map(i => ALL_QUESTIONS[i]);
+  answers = new Array(40).fill(-1);
+  fcIndex = 0;
+  updateTopBar();
+  render();
+}
+
+function countAnswered() { return answers.filter(a => a !== -1).length; }
+function countCorrect()  { return answers.filter((a, i) => a === currentSet[i].ans).length; }
+
+function updateTopBar() {
+  const answered = countAnswered();
+  const correct = countCorrect();
+  document.getElementById('scoreDisplay').textContent =
+    answered === 0 ? '0 / 0' : `${correct} / ${answered}`;
+  if (mode === 'quiz') {
+    document.getElementById('progressDisplay').textContent =
+      `${answered} of 40 done`;
+  } else {
+    document.getElementById('progressDisplay').textContent =
+      `Q ${fcIndex + 1} of 40`;
+  }
+}
+
+function setMode(m) {
+  mode = m;
+  document.getElementById('quizModeBtn').classList.toggle('active', m === 'quiz');
+  document.getElementById('fcModeBtn').classList.toggle('active', m === 'flashcard');
+  fcIndex = 0;
+  updateTopBar();
+  render();
+}
+
+const LETTERS = ['A','B','C','D'];
+const TOPIC_EMOJIS = {
+  'Traffic Signs': '🚦', 'Traffic Signals': '🔴', 'Road Markings': '🛣️',
+  'Speed Limits': '🚗', 'Right of Way': '⚖️', 'Emergency Vehicles': '🚨',
+  'School Buses': '🚌', 'Railroad Crossings': '🚂', 'Following Distance': '📏',
+  'Headlights': '💡', 'Winter Driving': '❄️', 'Motorcycles & Bicycles': '🏍️',
+  'Parking': '🅿️', 'Alcohol & DWI': '🍺', 'Lane Changes': '↕️', 'MN Laws': '📜'
+};
+
+// ════════════════════════════════════════════
+//  RENDER
+// ════════════════════════════════════════════
+function render() {
+  const main = document.getElementById('mainContent');
+
+  if (mode === 'quiz') {
+    renderQuiz(main);
+  } else {
+    renderFlashcard(main);
+  }
+}
+
+function renderQuiz(main) {
+  const allDone = countAnswered() === 40;
+
+  if (allDone) {
+    renderResults(main);
+    return;
+  }
+
+  let html = `<div class="intro-banner">
+    <div class="intro-icon">📖</div>
+    <div class="intro-text">
+      <h3>Quiz Mode — ${currentSet.length} Questions</h3>
+      <p>Click an answer to get instant feedback. You need 32/40 (80%) to pass the real MN knowledge test!</p>
+    </div>
+  </div><div class="quiz-list">`;
+
+  let lastTopic = null;
+  currentSet.forEach((q, i) => {
+    const chosen = answers[i];
+    const answered = chosen !== -1;
+    const correct = answered && chosen === q.ans;
+    const cardClass = !answered ? '' : correct ? 'answered-correct' : 'answered-wrong';
+    const emoji = TOPIC_EMOJIS[q.topic] || '📋';
+
+    if (q.topic !== lastTopic) {
+      if (lastTopic !== null) {
+        html += `</div>`;
+      }
+      html += `<div class="topic-divider" style="animation-delay:${i*0.02}s">
+        <div class="topic-divider-line"></div>
+        <div class="topic-divider-label">${emoji} ${q.topic}</div>
+        <div class="topic-divider-line"></div>
+      </div>`;
+      lastTopic = q.topic;
+    }
+
+    html += `<div class="q-card ${cardClass}" id="qcard-${i}" style="animation-delay:${Math.min(i*0.04,0.8)}s">
+      <div class="q-num">
+        <div class="q-num-badge">${i+1}</div>
+        <span class="q-topic-tag">${emoji} ${q.topic}</span>
+        ${answered ? (correct ? '<span style="color:var(--correct);font-size:1.1rem">✓ Correct!</span>' : '<span style="color:var(--wrong);font-size:1.1rem">✗ Incorrect</span>') : ''}
+      </div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">`;
+
+    q.opts.forEach((opt, j) => {
+      let cls = '';
+      if (answered) {
+        if (j === q.ans) cls = 'reveal-correct';
+        else if (j === chosen && chosen !== q.ans) cls = 'wrong-choice';
+      }
+      const disabled = answered ? 'disabled' : '';
+      html += `<button class="option-btn ${cls}" ${disabled} onclick="answerQ(${i}, ${j})">
+        <span class="letter">${LETTERS[j]}</span>
+        <span>${opt}</span>
+      </button>`;
+    });
+
+    if (answered) {
+      const icon = correct ? '✅' : '💡';
+      html += `<div class="feedback-tip"><span class="feedback-icon">${icon}</span>${q.tip}</div>`;
+    }
+
+    html += `</div></div>`;
+  });
+
+  html += `</div></div>`;
+  main.innerHTML = html;
+}
+
+function renderResults(main) {
+  const correct = countCorrect();
+  const pct = Math.round((correct / 40) * 100);
+  const passed = correct >= 32;
+  let emoji, msg;
+  if (pct === 100) { emoji = '🏆'; msg = "Perfect score! You're ready to ace the real test!"; }
+  else if (pct >= 90) { emoji = '🌟'; msg = "Excellent! You really know your MN driving laws!"; }
+  else if (pct >= 80) { emoji = '✅'; msg = "Great job! You passed the practice test — keep it up!"; }
+  else if (pct >= 70) { emoji = '📚'; msg = "Getting close! A little more studying and you'll be ready."; }
+  else { emoji = '💪'; msg = "Keep practicing! Review the questions you missed and try again."; }
+
+  main.innerHTML = `<div class="results-screen">
+    <span class="results-emoji">${emoji}</span>
+    <div class="results-title">Quiz Complete!</div>
+    <div class="pass-fail-badge ${passed ? 'pass-badge' : 'fail-badge'}">${passed ? '✓ PASS' : '✗ NEEDS MORE STUDY'}</div>
+    <div class="results-score">${correct}/40</div>
+    <div class="results-out-of">${pct}% — You need 80% (32/40) to pass</div>
+    <div class="results-msg">${msg}</div>
+    <div class="results-actions">
+      <button class="btn-primary" onclick="retrySet()">🔄 Retry Same Questions</button>
+      <button class="btn-secondary" onclick="newSet()">🔀 New Set of 40</button>
+    </div>
+  </div>`;
+}
+
+function renderFlashcard(main) {
+  const q = currentSet[fcIndex];
+  const chosen = answers[fcIndex];
+  const answered = chosen !== -1;
+  const correct = answered && chosen === q.ans;
+  const emoji = TOPIC_EMOJIS[q.topic] || '📋';
+  const fcClass = !answered ? '' : correct ? 'fc-correct' : 'fc-wrong';
+
+  const pct = ((fcIndex) / 40) * 100;
+
+  let html = `<div class="flashcard-container">
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" style="width:${pct}%"></div>
+    </div>
+    <div class="flashcard-nav">
+      <button class="nav-btn" onclick="fcNav(-1)" ${fcIndex === 0 ? 'disabled' : ''}>‹</button>
+      <div class="fc-progress-text">Card ${fcIndex+1} of 40</div>
+      <button class="nav-btn" onclick="fcNav(1)" ${fcIndex === 39 ? 'disabled' : ''}>›</button>
+    </div>
+    <div class="flashcard ${fcClass}">
+      <div class="fc-q-num">
+        <div class="q-num-badge">${fcIndex+1}</div>
+        <span class="q-topic-tag">${emoji} ${q.topic}</span>
+        ${answered ? (correct ? '<span style="color:var(--correct);font-weight:800">✓ Correct!</span>' : '<span style="color:var(--wrong);font-weight:800">✗ Incorrect</span>') : ''}
+      </div>
+      <div class="fc-question">${q.q}</div>
+      <div class="fc-options">`;
+
+  q.opts.forEach((opt, j) => {
+    let cls = '';
+    if (answered) {
+      if (j === q.ans) cls = 'reveal-correct';
+      else if (j === chosen && chosen !== q.ans) cls = 'wrong-choice';
+    }
+    const disabled = answered ? 'disabled' : '';
+    html += `<button class="option-btn ${cls}" ${disabled} onclick="fcAnswer(${j})">
+      <span class="letter">${LETTERS[j]}</span>
+      <span>${opt}</span>
+    </button>`;
+  });
+
+  if (answered) {
+    html += `<div class="fc-tip">💡 ${q.tip}</div>`;
+  }
+
+  html += `</div></div>`;
+
+  // Navigation bottom
+  html += `<div style="display:flex;gap:12px;margin-top:4px;width:100%;max-width:600px;justify-content:space-between">`;
+  if (fcIndex > 0) {
+    html += `<button class="btn-secondary" onclick="fcNav(-1)" style="flex:1">‹ Previous</button>`;
+  } else {
+    html += `<div style="flex:1"></div>`;
+  }
+  if (answered && fcIndex < 39) {
+    html += `<button class="btn-primary" onclick="fcNav(1)" style="flex:1">Next ›</button>`;
+  } else if (fcIndex === 39 && answered) {
+    html += `<button class="btn-primary" onclick="fcShowResults()" style="flex:1">See Results 🎉</button>`;
+  } else {
+    html += `<div style="flex:1"></div>`;
+  }
+  html += `</div>`;
+
+  // Score summary
+  const answered_count = countAnswered();
+  const correct_count = countCorrect();
+  if (answered_count > 0) {
+    html += `<div style="text-align:center;color:var(--text-muted);font-weight:700;font-size:0.9rem;margin-top:4px">
+      ${correct_count} correct out of ${answered_count} answered
+    </div>`;
+  }
+
+  html += `</div>`;
+  main.innerHTML = html;
+}
+
+// ════════════════════════════════════════════
+//  EVENT HANDLERS
+// ════════════════════════════════════════════
+function answerQ(qIndex, chosenIndex) {
+  if (answers[qIndex] !== -1) return;
+  answers[qIndex] = chosenIndex;
+  updateTopBar();
+
+  // Re-render just this card for performance
+  const q = currentSet[qIndex];
+  const correct = chosenIndex === q.ans;
+  const card = document.getElementById(`qcard-${qIndex}`);
+  if (!card) { render(); return; }
+
+  card.className = `q-card ${correct ? 'answered-correct' : 'answered-wrong'}`;
+
+  // Update options
+  const btns = card.querySelectorAll('.option-btn');
+  btns.forEach((btn, j) => {
+    btn.disabled = true;
+    if (j === q.ans) btn.classList.add('reveal-correct');
+    else if (j === chosenIndex && !correct) btn.classList.add('wrong-choice');
+  });
+
+  // Update q-num status
+  const qNum = card.querySelector('.q-num');
+  const existingStatus = qNum.querySelector('.status-span');
+  if (existingStatus) existingStatus.remove();
+  const statusEl = document.createElement('span');
+  statusEl.className = 'status-span';
+  statusEl.style.cssText = `color:${correct ? 'var(--correct)' : 'var(--wrong)'};font-size:1.1rem`;
+  statusEl.textContent = correct ? '✓ Correct!' : '✗ Incorrect';
+  qNum.appendChild(statusEl);
+
+  // Add tip
+  const existingTip = card.querySelector('.feedback-tip');
+  if (!existingTip) {
+    const tip = document.createElement('div');
+    tip.className = 'feedback-tip';
+    tip.innerHTML = `<span class="feedback-icon">${correct ? '✅' : '💡'}</span>${q.tip}`;
+    card.appendChild(tip);
+  }
+
+  // Check if all done
+  if (countAnswered() === 40) {
+    setTimeout(() => {
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 800);
+  }
+
+  // Scroll card into better view
+  card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function fcAnswer(chosenIndex) {
+  if (answers[fcIndex] !== -1) return;
+  answers[fcIndex] = chosenIndex;
+  updateTopBar();
+  renderFlashcard(document.getElementById('mainContent'));
+}
+
+function fcNav(dir) {
+  fcIndex = Math.max(0, Math.min(39, fcIndex + dir));
+  updateTopBar();
+  renderFlashcard(document.getElementById('mainContent'));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function fcShowResults() {
+  mode = 'quiz';
+  document.getElementById('quizModeBtn').classList.add('active');
+  document.getElementById('fcModeBtn').classList.remove('active');
+  renderResults(document.getElementById('mainContent'));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function retrySet() {
+  answers = new Array(40).fill(-1);
+  fcIndex = 0;
+  updateTopBar();
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ════════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════════
+newSet();
+</script>
+</body>
+</html>
